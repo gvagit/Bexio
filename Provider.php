@@ -20,7 +20,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://idp.bexio.com/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://auth.bexio.com/realms/bexio/protocol/openid-connect/auth', $state);
     }
 
     /**
@@ -28,7 +28,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return 'https://idp.bexio.com/token';
+        return 'https://auth.bexio.com/realms/bexio/protocol/openid-connect/token';
     }
 
     /**
@@ -36,7 +36,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://idp.bexio.com/userinfo', [
+        $response = $this->getHttpClient()->get('https://auth.bexio.com/realms/bexio/protocol/openid-connect/userinfo', [
             RequestOptions::HEADERS => [
                 'Authorization' => 'Bearer '.$token,
             ],
